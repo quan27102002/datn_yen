@@ -50,3 +50,33 @@ function listenToDeviceChanges(device, button) {
 // Lắng nghe sự thay đổi cho cả đèn và quạt
 listenToDeviceChanges('light', lightToggle);
 listenToDeviceChanges('fan', fanToggle);
+// Khởi tạo Firebase Storage
+const storage = firebase.storage();
+
+// Hàm để lấy danh sách ảnh từ một thư mục
+function getImagesFromFolder(folderName) {
+    const folderRef = storage.ref(folderName);
+    const imageContainer = document.getElementById('imageContainer');
+    
+    folderRef.listAll()
+        .then((res) => {
+            console.log(res);
+            res.items.forEach((itemRef) => {
+                itemRef.getDownloadURL().then((url) => {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = itemRef.name;
+                    img.className = 'storage-image';
+                    imageContainer.appendChild(img);
+                }).catch((error) => {
+                    console.error("Lỗi khi lấy URL download:", error);
+                });
+            });
+        }).catch((error) => {
+            console.error("Lỗi khi liệt kê ảnh:", error);
+        });
+}
+
+// Gọi hàm để lấy ảnh từ hai thư mục
+getImagesFromFolder('Input/');
+getImagesFromFolder('output/');
