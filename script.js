@@ -7,7 +7,7 @@ const firebaseConfig = {
     storageBucket: "datn-89d8d.appspot.com",
     messagingSenderId: "966015016684",
     appId: "1:966015016684:web:99fd59ea30dc865e624fc9"
-  };
+};
 
 // Khởi tạo Firebase
 firebase.initializeApp(firebaseConfig);
@@ -16,17 +16,11 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
 // Lấy các nút điều khiển
-const lightToggle = document.getElementById('lightToggle');
-const fanToggle = document.getElementById('fanToggle');
+const buttonBanner = document.getElementById('buttonBanner');
 
-// Xử lý sự kiện cho đèn
-lightToggle.addEventListener('click', () => {
-    toggleDevice('light');
-});
-
-// Xử lý sự kiện cho quạt
-fanToggle.addEventListener('click', () => {
-    toggleDevice('fan');
+// Xử lý sự kiện cho banner
+buttonBanner.addEventListener('click', () => {
+    toggleDevice('barrierOut');
 });
 
 // Hàm chuyển đổi trạng thái thiết bị
@@ -42,14 +36,35 @@ function toggleDevice(device) {
 function listenToDeviceChanges(device, button) {
     database.ref(device).on('value', (snapshot) => {
         const state = snapshot.val();
-        button.textContent = state ? 'Tắt' : 'Bật';
+        button.textContent = state ? 'Tắt banner' : 'Mở banner';
         button.style.backgroundColor = state ? '#ff4136' : '#2ecc40';
     });
 }
 
-// Lắng nghe sự thay đổi cho cả đèn và quạt
-listenToDeviceChanges('light', lightToggle);
-listenToDeviceChanges('fan', fanToggle);
+// Lắng nghe sự thay đổi cho banner
+listenToDeviceChanges('barrierOut', buttonBanner);
+
+// Lắng nghe sự thay đổi của các slot đỗ xe và cập nhật màu sắc
+function listenToParkingSlotChanges(id, slot) {
+    const parkingStatusDiv = document.getElementById(id);
+    database.ref(slot).on('value', (snapshot) => {
+        const status = snapshot.val();
+        if (status === 0) {
+            parkingStatusDiv.classList.remove('red');
+            parkingStatusDiv.classList.add('green');
+        } else if (status === 1) {
+            parkingStatusDiv.classList.remove('green');
+            parkingStatusDiv.classList.add('red');
+        }
+    });
+}
+
+// Lắng nghe sự thay đổi của các slot đỗ xe
+listenToParkingSlotChanges('slot1', 'parkingSlots/slot1');
+listenToParkingSlotChanges('slot2', 'parkingSlots/slot2');
+listenToParkingSlotChanges('slot3', 'parkingSlots/slot3');
+listenToParkingSlotChanges('slot4', 'parkingSlots/slot4');
+
 // Khởi tạo Firebase Storage
 const storage = firebase.storage();
 
@@ -57,7 +72,7 @@ const storage = firebase.storage();
 function getImagesFromFolder(folderName) {
     const folderRef = storage.ref(folderName);
     const imageContainer = document.getElementById('imageContainer');
-    
+
     folderRef.listAll()
         .then((res) => {
             console.log(res);
@@ -79,4 +94,4 @@ function getImagesFromFolder(folderName) {
 
 // Gọi hàm để lấy ảnh từ hai thư mục
 getImagesFromFolder('Input/');
-getImagesFromFolder('output/');
+getImagesFromFolder('Output/');
