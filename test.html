@@ -1,74 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="test.css" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="body">
-        <div class="header">
-            <h1>BÃI GIỮ XE THÔNG MINH</h1>
-            <div class="header__text">
-                <span>GVHD: TS. NGUYỄN HOÀNG DŨNG</span><br />
-                <span>SV THỰC HIỆN: TRƯƠNG THỊ YẾN</span>
-            </div>
+      <div class="header">
+        <h1>BÃI GIỮ XE THÔNG MINH</h1>
+        <div class="header__text">
+          <span>GVHD: TS. NGUYỄN HOÀNG DŨNG</span><br />
+          <span>SV THỰC HIỆN: TRƯƠNG THỊ YẾN</span>
         </div>
-        <div class="container">
-            <div class="top__container">
-                <div class="parking">
-                    <div class="parking__box">
-                        <i class="fa-solid fa-car"></i> <span>Vị trí 1</span>
-                    </div>
-                    <div class="status_parking" id="slot1"></div>
-                </div>
-                <div class="parking">
-                    <div class="parking__box">
-                        <i class="fa-solid fa-car"></i> <span>Vị trí 2</span>
-                    </div>
-                    <div class="status_parking" id="slot2"></div>
-                </div>
-                <div class="parking">
-                    <div class="parking__box">
-                        <i class="fa-solid fa-car"></i> <span>Vị trí 3</span>
-                    </div>
-                    <div class="status_parking" id="slot3"></div>
-                </div>
-                <div class="parking">
-                    <div class="parking__box">
-                        <i class="fa-solid fa-car"></i> <span>Vị trí 4</span>
-                    </div>
-                    <div class="status_parking" id="slot4"></div>
-                </div>
+      </div>
+      <div class="container">
+        <div class="top__container">
+          <div class="parking">
+            <div class="parking__box">
+              <i class="fa-solid fa-car"></i> <span>Vị trí 1</span>
             </div>
-            <div class="img_license_plates">
-                <div class="in" id ="in">
-                    <span class="text">Biển số đầu vào</span>
-                    <!-- <img class="img__motorcycle"
+            <div class="status_parking" id="slot1"></div>
+          </div>
+          <div class="parking">
+            <div class="parking__box">
+              <i class="fa-solid fa-car"></i> <span>Vị trí 2</span>
+            </div>
+            <div class="status_parking" id="slot2"></div>
+          </div>
+          <div class="parking">
+            <div class="parking__box">
+              <i class="fa-solid fa-car"></i> <span>Vị trí 3</span>
+            </div>
+            <div class="status_parking" id="slot3"></div>
+          </div>
+          <div class="parking">
+            <div class="parking__box">
+              <i class="fa-solid fa-car"></i> <span>Vị trí 4</span>
+            </div>
+            <div class="status_parking" id="slot4"></div>
+          </div>
+        </div>
+
+        <div class="img_license_plates">
+          <div class="in" id="in">
+            <span class="text">Biển số đầu vào</span>
+            <!-- <img class="img__motorcycle"
                         src="https://tse1.mm.bing.net/th?id=OIP.cNvp0ehUlHyvACOSMNVQHAHaFj&pid=Api&P=0&h=220"
                         alt="img" /> -->
-                </div>
-                <div class="out" id="out">
-                    <span class="text">Biển số đầu ra</span>
-                    <!-- <img class="img__motorcycle"
+          </div>
+          <div class="out" id="out">
+            <span class="text">Biển số đầu ra</span>
+            <!-- <img class="img__motorcycle"
                         src="https://tse1.mm.bing.net/th?id=OIP.cNvp0ehUlHyvACOSMNVQHAHaFj&pid=Api&P=0&h=220"
                         alt="img" /> -->
-                </div>
-            </div>
-           
-            <div class="button">
-                <button class="btn" id="buttonBanner">Mở barrier</button>
-            </div>
+          </div>
         </div>
+
+        <div class="button">
+          <button class="btn" id="buttonBanner">Mở barrier</button>
+        </div>
+      </div>
     </div>
-    <script src="https://kit.fontawesome.com/3907a190cb.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/3907a190cb.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
